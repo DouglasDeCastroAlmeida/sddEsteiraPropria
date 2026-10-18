@@ -1,0 +1,37 @@
+{
+  "name": "sdd-flow",
+  "version": "1.0.0",
+  "description": "Esteira profissional de Spec-Driven Development (SDD) para desenvolvimento guiado por IA",
+  "type": "module",
+  "main": "dist/cli.js",
+  "bin": {
+    "sdd": "./bin/sdd.js"
+  },
+  "scripts": {
+    "build": "tsc && node scripts/copy-templates.js",
+    "start": "tsx src/cli.ts",
+    "sdd": "node bin/sdd.js",
+    "dev": "tsx src/cli.ts",
+    "test": "tsx --test tests/**/*.test.ts"
+  },
+  "keywords": [
+    "sdd",
+    "spec-driven-development",
+    "ai-agents",
+    "software-design-document",
+    "tdd",
+    "pipeline"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@inquirer/prompts": "^7.3.2",
+    "commander": "^13.1.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}

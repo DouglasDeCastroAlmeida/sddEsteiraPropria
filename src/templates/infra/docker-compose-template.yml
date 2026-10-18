@@ -1,0 +1,45 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: {{PROJECT_SLUG}}_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - DATABASE_URL={{DATABASE_URL_VALUE}}
+    networks:
+      - app_network
+    depends_on:
+      {{DB_SERVICE_NAME}}:
+        condition: service_healthy
+
+  {{DB_SERVICE_BLOCK}}
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: {{PROJECT_SLUG}}_caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - app_network
+    depends_on:
+      - app
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  {{DB_VOLUME_BLOCK}}
+  caddy_data:
+  caddy_config:

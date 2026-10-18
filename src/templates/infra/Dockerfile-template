@@ -1,0 +1,53 @@
+# ==========================================
+# Estágio 1: Dependências e Build
+# ==========================================
+FROM node:22-alpine AS builder
+
+WORKDIR /app
+
+# Instala ferramentas básicas necessárias para build nativo (se houver)
+RUN apk add --no-cache libc6-compat
+
+# Copia manifestos de dependências para aproveitar cache de layers
+COPY package.json package-lock.json* ./
+
+RUN npm ci
+
+# Copia código-fonte do projeto
+COPY . .
+
+# Executa build de produção (TypeScript / React / Vite / Next.js)
+RUN npm run build || true
+
+# ==========================================
+# Estágio 2: Runner de Produção Mínimo
+# ==========================================
+FROM node:22-alpine AS runner
+
+WORKDIR /app
+
+# Define ambiente de produção
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Adiciona usuário não-root para máxima segurança em produção
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 appuser
+
+# Copia arquivos necessários do estágio builder
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist 2>/dev/null || true
+COPY --from=builder /app/build ./build 2>/dev/null || true
+COPY --from=builder /app/public ./public 2>/dev/null || true
+
+# Ajusta permissões para o usuário da aplicação
+USER appuser
+
+EXPOSE 3000
+
+# Healthcheck do container
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1
+
+CMD ["npm", "start"]

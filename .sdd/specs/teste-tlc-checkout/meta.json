@@ -1,0 +1,14 @@
+{
+  "featureName": "teste-tlc-checkout",
+  "slug": "teste-tlc-checkout",
+  "pascalName": "TesteTlcCheckout",
+  "createdAt": "2026-10-18T18:47:35.384Z",
+  "currentStage": "01-prd",
+  "grillCompleted": false,
+  "stagesHistory": [
+    {
+      "stage": "01-prd",
+      "enteredAt": "2026-10-18T18:47:35.384Z"
+    }
+  ]
+}

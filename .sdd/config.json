@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "projectName": "sddEsteiraProrpia",
+  "language": "pt-BR",
+  "specsDir": ".sdd/specs",
+  "tddRequired": true,
+  "enforceAudit": true,
+  "agentRules": {
+    "disallowCodeWithoutSpec": true,
+    "atomicTaskExecution": true
+  }
+}

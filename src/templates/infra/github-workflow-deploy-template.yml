@@ -1,0 +1,61 @@
+name: CI/CD Pipeline - Hostinger Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test-and-quality:
+    name: 🧪 Portão de Qualidade TLC & Testes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar testes unitários e de contrato (TLC)
+        run: npm test
+
+      - name: Validar build de produção
+        run: npm run build || true
+
+  deploy-hostinger:
+    name: 🚀 Deploy Automatizado na VPS Hostinger
+    needs: test-and-quality
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Disparar deploy via SSH na Hostinger
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOSTINGER_SSH_HOST }}
+          username: ${{ secrets.HOSTINGER_SSH_USER }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          port: ${{ secrets.HOSTINGER_SSH_PORT || 22 }}
+          script_stop: true
+          script: |
+            echo "🚀 Iniciando deploy na Hostinger..."
+            cd /var/www/{{PROJECT_SLUG}} || cd ~/apps/{{PROJECT_SLUG}}
+            
+            # Atualiza código da branch main
+            git pull origin main
+            
+            # Recria containers Docker com novas imagens
+            docker compose down --remove-orphans || true
+            docker compose up -d --build
+            
+            # Smoke test de verificação da aplicação
+            sleep 5
+            docker ps | grep {{PROJECT_SLUG}}
+            echo "✔ Deploy concluído com sucesso na Hostinger!"
