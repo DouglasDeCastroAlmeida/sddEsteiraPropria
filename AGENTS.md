@@ -39,7 +39,7 @@ A esteira possui estágios sequenciais rigorosos:
 1. **Estágio 00 (Grill):** Desafio socrático e blindagem contra suposições falsas em `00-grill.md`.
 2. **Estágio 01 (PRD):** Alinhe o problema, requisitos funcionais (RFs) com histórias de usuário, requisitos não-funcionais (RNFs) e o que está expressamente FORA de escopo.
 3. **Estágio 02 (SDD):** Elabore a arquitetura, diagramas Mermaid, modelos de dados, contratos de API e ADRs.
-4. **Estágio 03 (Tasks):** Quebre a entrega em microtarefas atômicas organizadas sob a ótica de TDD.
+4. **Estágio 03 (Tasks):** Quebre a entrega em microtarefas atômicas organizadas sob a ótica de TDD. Toda apresentação de tarefas e estimativa deve conter obrigatoriamente uma linha final de **TOTALIZADOR GERAL** (somatório de tarefas e tempo total em horas e minutos).
 5. **Estágio 04 (Implementação & Rigor TLC):**
    - **TLC (Test-Led Coding):** Cada funcionalidade é guiada por testes em camadas:
      1. `[TEST-CONTRACT]`: Validação de schemas Zod/Types de entrada e saída (Fail-Fast).
@@ -77,3 +77,4 @@ Como agente atuando no Antigravity, acione as ferramentas certas em cada fase:
 - **Cobertura de Testes:** Todo código de negócio deve possuir testes unitários associados cobrindo caso feliz e casos de falha.
 - **Fail-Fast & Validação de Entrada:** Valide dados nas bordas antes de invocar a lógica de negócio.
 - **Comentários & Documentação:** Preserve comentários e gere documentação em Português do Brasil.
+

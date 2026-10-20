@@ -9,7 +9,7 @@
 2. **Tipagem Estrita:** 100% TypeScript com `strict: true`. Proibido o uso de `any` ou casts inseguros.
 3. **Simplicidade Orientada ao Problema:** Preferir monólito modular a microsserviços desnecessários, salvo quando a separação de domínios for estritamente justificada no SDD.
 4. **Isolamento de Infraestrutura:** Todo serviço deve rodar em container Docker multi-stage com usuário não-root.
-
+5. **Totalizador Obrigatório em Estimativas TLC:** Sempre que o desenvolvedor ou o Agente de IA apresentar uma tabela de tarefas e estimativa de tempo (no chat, em 03-tasks.md, no WhatsApp ou em relatórios executivos), é **TERMINANTEMENTE OBRIGATÓRIO** incluir uma linha final com o **TOTALIZADOR GERAL** contendo o somatório exato do número de tarefas e o tempo total calculado (em horas e minutos), garantindo transparência imediata.
 ---
 
 ## 💻 2. Stack Tecnológica Padrão
@@ -61,3 +61,4 @@ O Agente de IA no Antigravity deve ativar as capacidades certas no momento certo
 - **Zero Secrets no Código:** Segredos são injetados exclusivamente via variáveis de ambiente (`.env`).
 - **Sanitização nas Bordas:** Toda entrada externa é validada com schemas rígidos (ex: Zod) antes de atingir a lógica de negócio.
 - **Resiliência:** Timeouts de 5s para serviços externos, Circuit Breaker e políticas de retry exponencial com jitter.
+

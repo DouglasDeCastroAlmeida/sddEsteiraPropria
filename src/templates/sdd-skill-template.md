@@ -64,6 +64,7 @@ Esta skill orienta o agente de IA a operar rigorosamente segundo a **Esteira de 
   - `[TEST-UI]` / `[TEST-E2E]`: ~30-50 min
   - `[CHECK-SMOKE]`: ~15 min
   - `[IMPL]`: ~20 min
+- **Totalizador Obrigatório:** Toda apresentação ou tabela de tarefas deve incluir uma linha final com o **TOTALIZADOR GERAL** (somatório exato de tarefas e tempo total calculado em horas e minutos).
 
 ### Estágio 04: Implementação & Rigor TLC (Test-Led Coding)
 - **Comandos:** `sdd task list <feature>` e `sdd task complete <feature> <id>`
