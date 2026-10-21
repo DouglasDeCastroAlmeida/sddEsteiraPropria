@@ -12,8 +12,10 @@ Siga a skill `sdd-flow`. Objetivo: deixar o projeto pronto para mudanças SDD, c
 Rode o CLI do plugin (`${CLAUDE_PLUGIN_ROOT}` é o diretório do plugin; o caminho absoluto também aparece no contexto do início da sessão):
 
 ```bash
-node "${CLAUDE_PLUGIN_ROOT}/scripts/sdd.mjs" init $ARGUMENTS
+node "${CLAUDE_PLUGIN_ROOT}/scripts/sdd.mjs" init
 ```
+
+Acrescente `--force` ao comando só se o usuário o escreveu em `$ARGUMENTS` (`--force`). Qualquer outro texto em `$ARGUMENTS` é contexto do projeto: **não o repasse ao shell**; use-o apenas na entrevista do passo 2.
 
 Isso cria `.sdd/` (config, constituição, specs, changes, archive) e copia o motor para `.sdd/bin/` e os templates para `.sdd/templates/`. Daqui em diante use `node .sdd/bin/sdd.mjs`.
 

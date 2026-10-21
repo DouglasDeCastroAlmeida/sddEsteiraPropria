@@ -190,6 +190,8 @@ A qualquer momento:
 /sdd:status
 ```
 
+**Modelos de prompt prontos** para projeto novo, projeto em andamento, feature, bug e retomada: [docs/PROMPTS.md](docs/PROMPTS.md).
+
 ## 5. Conceitos
 
 | Conceito | O que é |
