@@ -1,0 +1,11 @@
+{
+  "name": "sdd",
+  "version": "2.0.0",
+  "description": "Esteira de Spec-Driven Development para Claude Code: Grill, PRD, Design, Tasks TLC, implementação por subagentes com TDD, verificação com rastreabilidade e specs vivas.",
+  "author": {
+    "name": "Douglas de Castro Almeida"
+  },
+  "repository": "https://github.com/DouglasDeCastroAlmeida/sddEsteiraPropria",
+  "license": "MIT",
+  "keywords": ["sdd", "spec-driven-development", "tdd", "claude-code"]
+}
