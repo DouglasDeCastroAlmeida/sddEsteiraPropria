@@ -4,11 +4,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Compilação e Build
-dist/
-build/
-*.tsbuildinfo
-
 # Arquivos de Ambiente e Segredos (NUNCA SUBIR AO GITHUB)
 .env
 .env.local
@@ -18,11 +13,9 @@ build/
 *.id_rsa
 *.id_ed25519
 
-# Arquivos Temporários de Testes e Execução
-tests/temp-*
+# Arquivos temporários
 *.log
-.sdd_runner.lock
-.sdd_runner.pid
+.sdd/.gate-state.json
 
 # Sistema e IDEs
 .DS_Store

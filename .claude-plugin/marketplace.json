@@ -1,0 +1,14 @@
+{
+  "name": "sdd-esteira",
+  "description": "Esteira de Spec-Driven Development para Claude Code: Grill, PRD, design, tarefas test-led, implementação por subagentes e verificação com rastreabilidade.",
+  "owner": {
+    "name": "Douglas de Castro Almeida"
+  },
+  "plugins": [
+    {
+      "name": "sdd",
+      "source": ".",
+      "description": "Esteira de Spec-Driven Development para Claude Code."
+    }
+  ]
+}
